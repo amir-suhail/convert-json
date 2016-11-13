@@ -1,0 +1,90 @@
+<div class="page-header" id="toCsv">
+    <h2>Convert to CSV</h2>
+</div>
+Here we use
+<a href="http://ngmodules.org/modules/ng-csv" target="_blank">ng-csv</a>
+plugin to convert to a CSV file.
+<h3>Steps to follow:</h3>
+<ol>
+    <li>
+        Download
+        <a href="lib/ng-csv.min.js" download>ng-csv.min.js</a>
+        and
+        <a href="lib/angular-sanitize.min.js" download>angular-sanitize.min.js</a>
+        and add to your project.
+    </li>
+    <li>Add couple of
+        <code>script tags</code>
+        to your index.html which points to the
+        ng-csv.min.js and angular-sanitize.min.js.
+        <div class="bs-callout bs-callout-info">
+            <xmp><script scr="basePath/ng-csv.min.js"></script>
+<script scr="basePath/angular-sanitize.min.js"></script></xmp>
+        </div>
+    </li>
+    <li>Add
+        <code>ngCsv</code>
+        and
+        <code>ngSanitize</code>
+        as dependencies in your module.
+        <div class="bs-callout bs-callout-info">
+            <xmp>var myapp = angular.module('myapp', ['ngSanitize', 'ngCsv'])</xmp>
+        </div>
+    </li>
+    <li>
+        Add ng-csv directive to the wanted element.
+        <div class="bs-callout bs-callout-info">
+            <xmp><button type="button" ng-csv="getArray" csv-header="['Field A', 'Field B', 'Field C']" filename="test.csv">
+    Export
+</button></xmp>
+        </div>
+        <div class="bs-callout bs-callout-warning">
+            <h4>ngCsv attributes that we use here</h4>
+            <ul>
+                <li>
+                    <code>ng-csv</code>:
+                    The data array - Could be an expression, a value or a promise.
+                </li>
+                <li>
+                    <code>filename</code>:
+                    The filename that will be stored on the user's computer.
+                </li>
+                <li>
+                    <code>csv-header:</code>
+                    If provided, would use this attribute to create a header row.
+                </li>
+            </ul>
+        </div>
+    </li>
+</ol>
+<div class="bs-example">
+    <div class="text-center">
+        <button class="btn btn-primary" ng-csv="$ctrl.jsonArray" csv-header="$ctrl.csvHeader" filename="csvFile.csv">
+            Export to CSV
+        </button>
+    </div>
+</div>
+<figure class="highlight">
+    <strong>HTML:</strong>
+    <xmp><button class="btn btn-primary" ng-csv="$ctrl.jsonArray" csv-header="$ctrl.csvHeader" filename="csvFile.csv">
+    Export to CSV
+</button>
+
+</xmp>
+
+    <strong>Varibles' values:</strong>
+<xmp>$ctrl.jsonArray = [{
+    name: 'testname1',
+    age: 'testage1'
+},{
+    name: 'testname2',
+    age: 'testage2'
+},{
+    name: 'testname3',
+    age: 'testage3'
+}];
+
+$ctrl.csvHeader = ['name', 'age'];
+</xmp>
+
+</figure>

@@ -1,0 +1,78 @@
+<div class="page-header" id="toXlsx">
+    <h2>Convert to XLSX</h2>
+</div>
+Here we use
+<a href="https://github.com/srijken/ng-xlsx" target="_blank">ng-xlsx</a>
+plugin to convert to a XLSX file.
+<h3>Steps to follow:</h3>
+<ol>
+    <li>
+        Download
+        <a href="lib/xlsx.full.min.js" download>xlsx.full.min.js</a>
+        and
+        <a href="lib/FileSaver.min.js" download>FileSaver.min.js</a>
+        and add to your project.
+    </li>
+    <li>Add couple of
+        <code>script tags</code>
+        to your index.html which points to the
+        xlsx.full.min.js and FileSaver.min.js.
+        <div class="bs-callout bs-callout-info">
+            <xmp><script scr="basePath/xlsx.full.min.js"></script>
+<script scr="basePath/FileSaver.min.js"></script></xmp>
+        </div>
+    </li>
+    <li>Add
+        <code>ngXlsx</code>
+        as a dependencies in your module.
+        <div class="bs-callout bs-callout-info">
+            <xmp>var myapp = angular.module('myapp', ['ngXlsx'])</xmp>
+        </div>
+    </li>
+    <li>
+        Use ngXlsx's <code>getBlob</code> method to create a XLSX blob and save
+        it with FileSaver's <code>saveAs</code> method.
+    </li>
+</ol>
+<div class="bs-example">
+    <div class="text-center">
+        <button class="btn btn-primary" ng-click="$ctrl.generateXlsx()">
+            Export to XLSX
+        </button>
+    </div>
+</div>
+<figure class="highlight">
+    <strong>HTML:</strong>
+    <xmp><button class="btn btn-primary" ng-click="$ctrl.generateXlsx()">
+    Export to XLSX
+</button>
+
+</xmp>
+
+    <strong>JS:</strong>
+<xmp>function xlsxConverterController (ngXlsx) {
+    var $ctrl = this;
+    var response = {
+        header: [
+            {field: "colA", displayName: "Column A"},
+            {field: "colB", displayName: "Column B"}
+        ],
+        data: [
+            {colA: 1, colB: "2"},
+            {colA: true, colB: "false"},
+            {colA: 'x', colB:'y'}
+        ]
+    };
+    var xlsxBlob = ngXlsx.getBlob([{
+        sheetName: "testSheet",
+        columnDefs: response.header,
+        data: response.data
+    }]);
+
+    $ctrl.generateXlsx = function () {
+        saveAs(xlsxBlob ,"xlsxFile.xlsx");
+    };
+}
+</xmp>
+
+</figure>

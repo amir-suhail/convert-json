@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="jsonConverter">
+	<head>
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-sanitize.min.js"></script>
+
+		<script src="lib/ng-csv.min.js"></script>
+		<script src="lib/FileSaver.min.js"></script>
+		<script src="lib/xlsx.full.min.js"></script>
+		<script src="lib/angular-xlsx.min.js"></script>
+		<script src="lib/html2canvas.js"></script>
+		<script src="lib/pdfMake.min.js"></script>
+
+		<script src="app.js"></script>
+		<script src="components/header/js/header.js"></script>
+		<script src="components/about/js/about.js"></script>
+		<script src="components/csvConverter/js/csvConverter.js"></script>
+		<script src="components/xlsxConverter/js/xlsxConverter.js"></script>
+		<script src="components/pdfConverter/js/pdfConverter.js"></script>
+		<script src="components/footer/js/footer.js"></script>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/docs.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+
+	</head>
+	<body>
+		<header></header>
+		<div class="container">
+				<about></about>
+				<csv-converter></csv-converter>
+				<xlsx-converter></xlsx-converter>
+				<pdf-converter></pdf-converter>
+		</div>
+		<footer></footer>
+	</body>
+</html>

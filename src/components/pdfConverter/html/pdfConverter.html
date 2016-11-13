@@ -1,0 +1,117 @@
+<div class="page-header" id="temToPdf">
+    <h2>Template to PDF</h2>
+</div>
+Here we use
+<a href="http://pdfmake.org/#/" target="_blank">pdfMake</a>
+plugin to convert to a PDF file.
+<h3>Steps to follow:</h3>
+<ol>
+    <li>
+        Download
+        <a href="lib/pdfMake.min.js" download>pdfMake.min.js</a>
+        and
+        <a href="lib/html2canvas.js" download>html2canvas.js</a>
+        and add to your project.
+    </li>
+    <li>Add couple of
+        <code>script tags</code>
+        to your index.html which points to the
+        pdfMake.min.js and html2canvas.js.
+        <div class="bs-callout bs-callout-info">
+            <xmp><script scr="basePath/pdfMake.min.js"></script>
+<script scr="basePath/html2canvas.js"></script></xmp>
+        </div>
+    </li>
+    <li>
+        Find the element to add to PDF and convert it to canvas using html2canvas.
+    </li>
+    <li>
+        Use pdfMake's <code>createPdf</code> method to create the PDF using the canvas.
+    </li>
+    <li>
+        Use pdfMake's <code>download</code> method on created PDF object to download the PDF.
+    </li>
+    <li>
+        Use pdfMake's <code>open</code> method on created PDF object to open the PDF in new tab.
+    </li>
+</ol>
+<div class="bs-example">
+    <table class="table table-bordered" id="toPdf">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button class="btn btn-primary" ng-click="$ctrl.viewPdf()">
+            View PDF
+        </button>
+        <button class="btn btn-primary" ng-click="$ctrl.downloadPdf()">
+            Export to PDF
+        </button>
+    </div>
+</div>
+<figure class="highlight">
+    <strong>HTML:</strong>
+    <xmp><button class="btn btn-primary" ng-click="$ctrl.viewPdf()">
+    View PDF
+</button>
+<button class="btn btn-primary" ng-click="$ctrl.downloadPdf()">
+    Export to PDF
+</button>
+
+</xmp>
+
+    <strong>JS:</strong>
+<xmp>function pdfConverterController () {
+    var $ctrl = this;
+    var html = document.getElementById('toPdf');
+    var pdf;
+
+    html2canvas(html, {
+        onrendered: function (canvas) {
+            var data = canvas.toDataURL();
+            var docDefinition = {
+                content: [{
+                    image: data,
+                    width: 500
+                }]
+            };
+            pdf = pdfMake.createPdf(docDefinition);
+        }
+    });
+
+    $ctrl.viewPdf = function () {
+        pdf.open("pdfFile.pdf");
+    };
+
+    $ctrl.downloadPdf = function () {
+        pdf.download("pdfFile.pdf");
+    };
+}
+</xmp>
+</figure>
