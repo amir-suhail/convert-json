@@ -28,6 +28,6 @@ function pdfConverterController () {
 }
 
 app.component('pdfConverter', {
-  templateUrl: 'components/pdfConverter/html/pdfConverter.html',
+  templateUrl: 'src/components/pdfConverter/html/pdfConverter.html',
   controller: pdfConverterController
 });

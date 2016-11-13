@@ -6,6 +6,6 @@ function aboutController () {
 }
 
 app.component('about', {
-    templateUrl: 'components/about/html/about.html',
+    templateUrl: 'src/components/about/html/about.html',
     controller: aboutController
 });

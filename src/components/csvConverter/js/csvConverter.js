@@ -17,6 +17,6 @@ function csvConverterController () {
 }
 
 app.component('csvConverter', {
-  templateUrl: 'components/csvConverter/html/csvConverter.html',
+  templateUrl: 'src/components/csvConverter/html/csvConverter.html',
   controller: csvConverterController
 });

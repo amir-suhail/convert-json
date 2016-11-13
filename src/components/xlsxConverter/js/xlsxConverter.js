@@ -25,6 +25,6 @@ function xlsxConverterController (ngXlsx) {
 }
 
 app.component('xlsxConverter', {
-  templateUrl: 'components/xlsxConverter/html/xlsxConverter.html',
+  templateUrl: 'src/components/xlsxConverter/html/xlsxConverter.html',
   controller: xlsxConverterController
 });

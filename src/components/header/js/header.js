@@ -1,5 +1,5 @@
 'use strict';
 
 app.component('header', {
-  templateUrl: 'components/header/html/header.html'
+  templateUrl: 'src/components/header/html/header.html'
 });
